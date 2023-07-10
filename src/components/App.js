@@ -3,6 +3,8 @@ import { createBrowserRouter, RouterProvider} from "react-router-dom"
 
 /**import components */
 import Main from './Main';
+import Quiz from './Quiz';
+import Result from './Result';
 
 /**react routers */
 const router = createBrowserRouter([
@@ -12,11 +14,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/quiz",
-    element: <div>Quiz Element</div>
+    element: <Quiz></Quiz>
   },
   {
     path: "/result",
-    element: <div>Result Element</div>
+    element: <Result></Result>
   }
 ])
 
