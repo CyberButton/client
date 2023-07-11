@@ -4,7 +4,7 @@ import data from "../database/data";
 export default function Questions() {
 
     useEffect(()=>{
-        console.log(data)
+        //console.log(data)
     })
 
     const question = data[0]
@@ -13,7 +13,7 @@ export default function Questions() {
 
     function onSelect() {
         //setChecked(!checked)
-        console.log("radio button onchange")
+        //console.log("radio button onchange")
     }
 
     return(
