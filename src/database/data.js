@@ -1,47 +1,49 @@
 export default [
     {
-        id : 1,
-        question : "who was john pork?",
+        id: 1,
+        question : "Javascript is an _______ language",
         options : [
-            'object-oriented-programming',
-            '2 hours later',
-            'in almaty'
+            'Object-Oriented',
+            'Object-Based',
+            'Procedural',
         ]
     },
     {
-        id : 2,
-        question : "who was john pork? 22",
+        id: 2,
+        question : "Following methods can be used to display data in some form using Javascript",
         options : [
-            'object-oriented-programming',
-            '2 hours later',
-            'in almaty'
+            'document.write()',
+            'console.log()',
+            'window.alert()',
         ]
     },
     {
-        id : 3,
-        question : "who was john pork? 33",
+        id: 3,
+        question : "When an operator value is NULL, the typeof returned by the unary operator is:",
         options : [
-            'object-oriented-programming',
-            '2 hours later',
-            'in almaty'
+            'Boolean',
+            'Undefined',
+            'Object',
         ]
     },
     {
-        id : 4,
-        question : "who was john pork? 44",
+        id: 4,
+        question : "What does the toString() method return?",
         options : [
-            'object-oriented-programming',
-            '2 hours later',
-            'in almaty'
+            'Return Object',
+            'Return String',
+            'Return Integer'
         ]
     },
     {
-        id : 5,
-        question : "who was john pork? 55",
+        id: 5,
+        question : "Which function is used to serialize an object into a JSON string?",
         options : [
-            'object-oriented-programming',
-            '2 hours later',
-            'in almaty'
+            'stringify()',
+            'parse()',
+            'convert()',
         ]
-    },
-]
+    }
+];
+
+export const answers = [0, 1, 2, 1, 0];
