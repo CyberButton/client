@@ -9,6 +9,7 @@ import { attempts_Number, earnPoints_Number, flagResult } from '../helper/helper
 /** import actions  */
 import { resetAllAction } from '../redux/question_reducer';
 import { resetResultAction } from '../redux/result_reducer';
+import { usePublishResults } from '../hooks/setResult';
 
 
 export default function Result() {
@@ -24,6 +25,19 @@ export default function Result() {
     const attempts = attempts_Number(result);
     const earnPoints = earnPoints_Number(result, answers, 10)
     const flag = flagResult(totalPoints, earnPoints)
+
+    console.log({result, 
+        username : userId, 
+        attempts, 
+        points: earnPoints, 
+        achived: flag ? "Passed" : "Failed"})
+
+    usePublishResults({
+        results : result, 
+        username : userId, 
+        attempts, 
+        points: earnPoints, 
+        achived: flag ? "Passed" : "Failed"})
 
     function onRestart(){
         dispatch(resetAllAction())
