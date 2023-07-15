@@ -16,16 +16,14 @@ export const updateResult = (index) => async (dispatch) => {
     }
 }
 
-export const usePublishResults = (resultData) => {
-    const {results, username} = resultData;
-    (async () => {
-        try {
-            if(results !== [] && !username) {
-                throw new Error("Couldnt get resluts")
-            }
-            await postServerData(`${process.env.REACT_APP_SERVER_HOSTNAME}/api/results`, resultData, data => data)
-        } catch (error) {
-            console.log(error)
+export const PublishResults = async (resultData) => {
+    const {result, username} = resultData;
+    try {
+        if(result !== [] && !username) {
+            throw new Error("Couldnt get resluts")
         }
-    })()
+        await postServerData(`${process.env.REACT_APP_SERVER_HOSTNAME}/api/results`, resultData, data => data)
+    } catch (error) {
+        console.log(error)
+    }
 }
