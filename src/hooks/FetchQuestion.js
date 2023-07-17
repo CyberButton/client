@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 /** redux actions */
 import * as Action from '../redux/question_reducer'
 import { getServerData } from "../helper/helper";
+import { setNameOfMCQ } from "../redux/result_reducer";
 
 /** fetch question hook to fetch api data and set value to store */
 export const useFetchQestion = () => {
@@ -18,13 +19,13 @@ export const useFetchQestion = () => {
         (async () => {
             try {
                 //let question = await data;
-                const [{ questions, answers }] = await getServerData(`${process.env.REACT_APP_SERVER_HOSTNAME}/api/questions`, (data) => data)
-                console.log({ questions, answers })
+                const [{ questions, answers, nameOfMCQ }] = await getServerData(`${process.env.REACT_APP_SERVER_HOSTNAME}/api/questions`, (data) => data)
+                console.log({ questions, answers, nameOfMCQ })
 
                 if(questions.length > 0){
                     setGetData(prev => ({...prev, isLoading : false}));
                     setGetData(prev => ({...prev, apiData : questions}));
-
+                    dispatch(setNameOfMCQ(nameOfMCQ))
                     /** dispatch an action */
                     dispatch(Action.startExamAction({question : questions, answers}))
                 } else{

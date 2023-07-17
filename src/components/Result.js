@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+//import React, { useEffect } from 'react'
 import '../styles/Result.css';
 import { Link } from 'react-router-dom';
 
@@ -15,7 +15,7 @@ import { PublishResults } from '../hooks/setResult';
 export default function Result() {
 
     const dispatch = useDispatch()
-    const { questions : { queue ,answers}, result : { result, userId}}  = useSelector(state => state)
+    const { questions : { queue ,answers}, result : { result, userId, nameOfMCQ}}  = useSelector(state => state)
 
     // useEffect(() => {
     //     console.log(flag)
@@ -32,16 +32,17 @@ export default function Result() {
     //     points: earnPoints, 
     //     achived: flag ? "Passed" : "Failed"})
 
-    useEffect(() => {
+    //useEffect(() => {
         PublishResults({
             results : result, 
             username : userId, 
             attempts, 
-            points: earnPoints, 
-            achived: flag ? "Passed" : "Failed"
+            correct: earnPoints, 
+            achived: flag ? "Passed" : "Failed",
+            nameOfMCQ: nameOfMCQ
         })
-        console.log(1)
-    }, [])
+        console.log(nameOfMCQ)
+    //}, [])
 
     function onRestart(){
         dispatch(resetAllAction())
