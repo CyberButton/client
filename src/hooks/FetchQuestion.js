@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 // import data, { answers } from "../database/data";
 
 /** redux actions */
@@ -11,6 +11,13 @@ import { setNameOfMCQ } from "../redux/result_reducer";
 export const useFetchQestion = () => {
     const dispatch = useDispatch();   
     const [getData, setGetData] = useState({ isLoading : false, apiData : [], serverError: null});
+    
+    const IDOFMC = useSelector(state => state.temp)
+    console.log(IDOFMC)
+    
+    
+    const IDOFMCQ = useSelector(state => state.temp.IDOFMCQ)
+    console.log(IDOFMCQ)
 
     useEffect(() => {
         setGetData(prev => ({...prev, isLoading : true}));
@@ -19,7 +26,10 @@ export const useFetchQestion = () => {
         (async () => {
             try {
                 //let question = await data;
-                const [{ questions, answers, nameOfMCQ }] = await getServerData(`${process.env.REACT_APP_SERVER_HOSTNAME}/api/questions`, (data) => data)
+                const serverData = await getServerData(`${process.env.REACT_APP_SERVER_HOSTNAME}/api/questions`, (data) => data)
+                
+                const [{ questions, answers, nameOfMCQ }] = serverData.find((item) => item._id === IDOFMCQ)
+                
                 console.log({ questions, answers, nameOfMCQ })
 
                 if(questions.length > 0){

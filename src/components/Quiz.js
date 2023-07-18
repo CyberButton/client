@@ -8,7 +8,12 @@ import { PushAnswer } from '../hooks/setResult';
 import { useSelector, useDispatch } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 
+// import { useLocation } from 'react-router-dom';
+
 export default function Quiz() {
+
+    // const location = useLocation();
+    // const selectedQuestions = location.state.selectedQuestions;
 
     const [check, setChecked] = useState(undefined)
 
@@ -55,7 +60,7 @@ export default function Quiz() {
         <h1 className='title text-light'>Quiz Application</h1>
 
         {/* display questions */}
-        <Questions onChecked={onChecked} />
+        <Questions onChecked={onChecked}/>
 
         <div className='grid'>
             { trace > 0 ? <button className='btn prev' onClick={onPrev}>Prev</button> : <div></div>}
