@@ -12,6 +12,7 @@ export default function Main() {
 
     function startQuiz(){
         if(inputRef.current?.value){
+            //console.log(inputRef.current?.value)
             dispatch(setUserId(inputRef.current?.value))
         }
     }
