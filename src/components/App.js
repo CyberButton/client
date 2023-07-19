@@ -26,7 +26,7 @@ const router = createBrowserRouter([
   },
   {
     path : '/select',
-    element : <Select></Select>
+    element : <CheckUserExist><Select /></ CheckUserExist>
   }
 ])
 

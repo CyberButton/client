@@ -10,11 +10,7 @@ import { setNameOfMCQ } from "../redux/result_reducer";
 /** fetch question hook to fetch api data and set value to store */
 export const useFetchQestion = () => {
     const dispatch = useDispatch();   
-    const [getData, setGetData] = useState({ isLoading : false, apiData : [], serverError: null});
-    
-    const IDOFMC = useSelector(state => state.temp)
-    console.log(IDOFMC)
-    
+    const [getData, setGetData] = useState({ isLoading : false, apiData : [], serverError: null});    
     
     const IDOFMCQ = useSelector(state => state.temp.IDOFMCQ)
     console.log(IDOFMCQ)
@@ -28,9 +24,19 @@ export const useFetchQestion = () => {
                 //let question = await data;
                 const serverData = await getServerData(`${process.env.REACT_APP_SERVER_HOSTNAME}/api/questions`, (data) => data)
                 
-                const [{ questions, answers, nameOfMCQ }] = serverData.find((item) => item._id === IDOFMCQ)
+                const amir = serverData.find((item) => item._id === IDOFMCQ)
                 
+                console.log(amir)
+                if (Array.isArray(amir) && amir.length > 0) {
+                    const [{ questions, answers, nameOfMCQ }] = amir;
+                    console.log({ questions, answers, nameOfMCQ });
+                  } else {
+                    console.log("Invalid data format for 'amir'");
+                  }
+                const { questions, answers, nameOfMCQ } = amir
+
                 console.log({ questions, answers, nameOfMCQ })
+
 
                 if(questions.length > 0){
                     setGetData(prev => ({...prev, isLoading : false}));
