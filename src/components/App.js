@@ -8,6 +8,7 @@ import Quiz from './Quiz';
 import Result from './Result';
 import { CheckUserExist } from '../helper/helper';
 import Select from './Select';
+import Generate from './Generate';
 
 
 /** react routes */
@@ -27,6 +28,12 @@ const router = createBrowserRouter([
   {
     path : '/select',
     element : <CheckUserExist><Select /></ CheckUserExist>
+  },
+  {
+    path : '/generate',
+    //element : <CheckUserExist><Select /></ CheckUserExist>
+    element : <Generate />
+
   }
 ])
 

@@ -27,10 +27,17 @@ export async function getServerData(url, callback){
     return callback ? callback(data) : data
 }
 
-export async function postServerData(url, result, callback){
-    const data = await (axios.post(url, result)).data;
-    //console.log(data);
-    return callback ? callback(data) : data
-}
+export async function postServerData(url, result, callback) {
+    try {
+      const response = await axios.post(url, result);
+      const data = response.data;
+      console.log(data);
+      return callback ? callback(data) : data;
+    } catch (error) {
+      console.error('Error in postServerData:', error);
+      return null; // Return a default value or handle the error in your component
+    }
+  }
+  
 
 //getServerData('http://localhost:5000/api/results')

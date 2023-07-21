@@ -9,7 +9,7 @@ import { setIDOFMCQ } from '../redux/temp_reducer'
 
 export default function Select() {
 
-    const [go, setGo] = useState(false)
+    const [go, setGo] = useState(0)
     const [serverData, setServerData] = useState([]);
     const dispatch = useDispatch();
     // const IDOFMCQ = useSelector(state => state.temp.IDOFMCQ)  
@@ -30,18 +30,22 @@ export default function Select() {
         
         function onNewClick() {
             console.log("click new quiz")
-            setGo(true);
+            setGo(2);
         }
     
-        if(go) {
+        if(go === 1) {
             return <Navigate to={{ pathname: '/quiz'}} replace={true}></Navigate>
         }
-        
-        const handleQuestionClick = (questionId) => {
-            dispatch(setIDOFMCQ(questionId))
-            console.log(questionId)
+
+        if(go === 2) {
+          return <Navigate to={{ pathname: '/generate'}} replace={true}></Navigate>
+        }
+
+        const handleQuestionClick = (item) => {
+            dispatch(setIDOFMCQ(item))
+            console.log(item)
             // console.log(IDOFMCQ)
-            setGo(true)
+            setGo(1)
           };
 
     return(
@@ -61,7 +65,7 @@ export default function Select() {
         <ol>
           {serverData.map((item) => (
             <li key={item._id}>
-              <a href="#" onClick={() => handleQuestionClick(item._id)}>{item.nameOfMCQ}</a>
+              <a href="#" onClick={() => handleQuestionClick(item)}>{item.nameOfMCQ}</a>
             </li>
           ))}
         </ol>

@@ -8,51 +8,43 @@ import { getServerData } from "../helper/helper";
 import { setNameOfMCQ } from "../redux/result_reducer";
 
 /** fetch question hook to fetch api data and set value to store */
-export const useFetchQestion = () => {
+export const useFetchQuestion = (setIsLoading) => {
     const dispatch = useDispatch();   
-    const [getData, setGetData] = useState({ isLoading : false, apiData : [], serverError: null});    
+    const [getData, setGetData] = useState({serverError: null});    
     
     const IDOFMCQ = useSelector(state => state.temp.IDOFMCQ)
-    console.log(IDOFMCQ)
 
     useEffect(() => {
-        setGetData(prev => ({...prev, isLoading : true}));
+        setIsLoading(true)
 
         /** async function fetch backend data */
-        (async () => {
+        const fetch = async () => {
             try {
+                setIsLoading(true)
                 //let question = await data;
-                const serverData = await getServerData(`${process.env.REACT_APP_SERVER_HOSTNAME}/api/questions`, (data) => data)
+                //const serverData = await getServerData(`${process.env.REACT_APP_SERVER_HOSTNAME}/api/questions`, (data) => data)
                 
-                const amir = serverData.find((item) => item._id === IDOFMCQ)
+                //const amir = serverData.find((item) => item._id === IDOFMCQ._id)
                 
-                console.log(amir)
-                if (Array.isArray(amir) && amir.length > 0) {
-                    const [{ questions, answers, nameOfMCQ }] = amir;
-                    console.log({ questions, answers, nameOfMCQ });
-                  } else {
-                    console.log("Invalid data format for 'amir'");
-                  }
-                const { questions, answers, nameOfMCQ } = amir
+                console.log("1")
 
-                console.log({ questions, answers, nameOfMCQ })
+                const { questions, answers, nameOfMCQ } = IDOFMCQ
+                console.log('questions', questions)
 
-
-                if(questions.length > 0){
-                    setGetData(prev => ({...prev, isLoading : false}));
-                    setGetData(prev => ({...prev, apiData : questions}));
+                if(questions.length){
+                    setIsLoading(false);
                     dispatch(setNameOfMCQ(nameOfMCQ))
                     /** dispatch an action */
                     dispatch(Action.startExamAction({question : questions, answers}))
-                } else{
-                    throw new Error("No Question Avalibale");
                 }
+
             } catch (error) {
-                setGetData(prev => ({...prev, isLoading : false}));
+                setIsLoading(false);
                 setGetData(prev => ({...prev, serverError : error}));
             }
-        })();
-    }, [dispatch]);
+        }
+        fetch();
+    }, [dispatch, setIsLoading, IDOFMCQ]);
 
     return [getData, setGetData];
 }
