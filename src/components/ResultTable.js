@@ -17,7 +17,7 @@ export default function ResultTable() {
       return () => clearTimeout(delay); // Cleanup function to clear the timeout on unmounting
     }, []);
     
-    console.log(userId)
+    console.log(data)
     //console.log(data)
 
   return (
@@ -25,9 +25,8 @@ export default function ResultTable() {
         <table>
             <thead className='table-header'>
                 <tr className='table-row'>
-                    <td>Name</td>
-                    <td>Attemps</td>
-                    <td>Earn Points</td>
+                    <td>Attempted Questions</td>
+                    <td>Correct Answers</td>
                     <td>Result</td>
                 </tr>
             </thead>
@@ -38,7 +37,6 @@ export default function ResultTable() {
                 .filter((v) => v.username === userId) // Filter the data by the specific username
                 .map((v, i) => (
                 <tr className='table-body' key={i}>
-                <td>{v.username || ""}</td>
                 <td>{v.attempts || 0}</td>
                 <td>{v.correct || 0}</td>
                 <td>{v.achived || ""}</td>

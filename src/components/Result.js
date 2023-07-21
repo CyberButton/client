@@ -21,9 +21,9 @@ export default function Result() {
     //     console.log(flag)
     // })
 
-    const totalPoints = queue.length * 10; 
+    const totalPoints = queue.length; 
     const attempts = attempts_Number(result);
-    const earnPoints = earnPoints_Number(result, answers, 10)
+    const earnPoints = earnPoints_Number(result, answers, 1)
     const flag = flagResult(totalPoints, earnPoints)
 
     // console.log({result, 
@@ -59,19 +59,15 @@ export default function Result() {
                 <span className='bold'>{userId}</span>
             </div>
             <div className='flex'>
-                <span>Total Quiz Points : </span>
+                <span>Number of Qusetions</span>
                 <span className='bold'>{totalPoints || 0}</span>
             </div>
             <div className='flex'>
-                <span>Total Questions : </span>
-                <span className='bold'>{ queue.length || 0}</span>
-            </div>
-            <div className='flex'>
-                <span>Total Attempts : </span>
+                <span>Attempted Questions</span>
                 <span className='bold'>{attempts || 0}</span>
             </div>
             <div className='flex'>
-                <span>Total Earn Points : </span>
+                <span>Correct Answers</span>
                 <span className='bold'>{earnPoints || 0}</span>
             </div>
             <div className='flex'>
