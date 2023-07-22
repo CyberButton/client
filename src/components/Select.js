@@ -1,9 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { Navigate } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import { getServerData } from '../helper/helper'
-import { setNameOfMCQ } from '../redux/result_reducer'
 import { setIDOFMCQ } from '../redux/temp_reducer'
 
 
@@ -26,7 +24,7 @@ export default function Select() {
           };
       
           fetchData();
-        }, []);
+        }, [serverData]);
         
         function onNewClick() {
             console.log("click new quiz")

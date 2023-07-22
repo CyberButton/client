@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 /** redux actions */
 import * as Action from '../redux/question_reducer'
-import { getServerData } from "../helper/helper";
 import { setNameOfMCQ } from "../redux/result_reducer";
 
 /** fetch question hook to fetch api data and set value to store */

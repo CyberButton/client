@@ -20,7 +20,7 @@ export default function Generate() {
 
         console.log("start quiz 1")
 
-        if(prompt.current?.value && sourceType.current?.value && nameOfMCQ.current?.value && (selectedNumber != '')){
+        if(prompt.current?.value && sourceType.current?.value && nameOfMCQ.current?.value && (selectedNumber !== '')){
         // const prompt = (prompt.current?.value)
         // function needs { promt, numberOfMCQ, sourceType, userID, nameOfMCQ }
         
