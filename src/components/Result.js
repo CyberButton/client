@@ -9,6 +9,7 @@ import { attempts_Number, earnPoints_Number, flagResult } from '../helper/helper
 /** import actions  */
 import { resetAllAction } from '../redux/question_reducer';
 import { resetResultAction } from '../redux/result_reducer';
+import { resetIDOFMCQ } from '../redux/temp_reducer'
 import { PublishResults } from '../hooks/setResult';
 
 
@@ -47,6 +48,8 @@ export default function Result() {
     function onRestart(){
         dispatch(resetAllAction())
         dispatch(resetResultAction())
+        dispatch(resetIDOFMCQ())
+        
     }
 
   return (

@@ -86,6 +86,7 @@ export default function Generate() {
         selected: {
           marginTop: '10px',
           fontSize: '16px',
+          color: 'white'
         },
       };
 
